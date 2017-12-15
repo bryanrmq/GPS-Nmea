@@ -8,6 +8,9 @@ This library allows you to quickly know your location, altitude, speed (km/h), s
 
 # How to use
 
+> This example is made for Arduino Mega with Serial & Serial 1
+> Note: I put the GPS module on RX1 & TX1
+
 ```
 #include "GPS.h"
 
@@ -16,15 +19,17 @@ GPS gps;
 //...
 
 void setup() {
+	// set the timezone +1 for Paris/Europe
 	gps.setTimezone(1);
 
 	Serial.begin(9600);
+	Serial1.begin(9600);
 }
 
 void loop() {
 	if (Serial1.available()) {
-	    String str = Serial1.readStringUntil('\n');
-	    if(gps.encode(str)) {
+    String str = Serial1.readStringUntil('\n');
+    if(gps.encode(str)) {
 			Serial.println("----------");
 			Serial.println(gps.getLocation().latitude);
 			Serial.println(gps.getLocation().longitude);
@@ -36,7 +41,7 @@ void loop() {
 			Serial.println(gps.getUpTime());
 			Serial.println(gps.getParsedUpTime());
 			Serial.println("----------");
-	    }
+    }
 	}
 }
 ```

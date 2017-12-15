@@ -28,8 +28,8 @@ void setup() {
 
 void loop() {
 	if (Serial1.available()) {
-    String str = Serial1.readStringUntil('\n');
-    if(gps.encode(str)) {
+		String str = Serial1.readStringUntil('\n');
+		if(gps.encode(str)) {
 			Serial.println("----------");
 			Serial.println(gps.getLocation().latitude);
 			Serial.println(gps.getLocation().longitude);
@@ -41,7 +41,7 @@ void loop() {
 			Serial.println(gps.getUpTime());
 			Serial.println(gps.getParsedUpTime());
 			Serial.println("----------");
-    }
+		}
 	}
 }
 ```
